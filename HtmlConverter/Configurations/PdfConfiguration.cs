@@ -57,10 +57,16 @@ namespace HtmlConverter.Configurations
 
         public PdfConfiguration()
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                WkhtmlPath = "C:\\Program Files\\wkhtmltopdf\\bin";
-            }
+            WkhtmlPath = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "C:\\Program Files\\wkhtmltopdf\\bin" : "";
+        }
+
+        public PdfConfiguration(string content = "", string url = "", string outputPath = "")
+        {
+            WkhtmlPath = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "C:\\Program Files\\wkhtmltopdf\\bin" : "";
+            
+            Url = url;
+            Content = content;
+            OutputPath = outputPath;
         }
 
         public override string GetContentType()

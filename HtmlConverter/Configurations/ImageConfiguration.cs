@@ -43,11 +43,20 @@ namespace HtmlConverter.Configurations
         
         public ImageConfiguration()
         {
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-                WkhtmlPath = "C:\\Program Files\\wkhtmltopdf\\bin";
-            }
+            WkhtmlPath = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "C:\\Program Files\\wkhtmltopdf\\bin" : "";
 
+            Format = ImageFormat.Png;
+            Quality = 100;
+            Width = 1024;
+        }
+
+        public ImageConfiguration(string content = "", string url = "", string outputPath = "")
+        {
+            WkhtmlPath = RuntimeInformation.IsOSPlatform(OSPlatform.Windows) ? "C:\\Program Files\\wkhtmltopdf\\bin" : "";
+            
+            Url = url;
+            Content = content;
+            OutputPath = outputPath;
             Format = ImageFormat.Png;
             Quality = 100;
             Width = 1024;

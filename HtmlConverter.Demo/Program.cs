@@ -1,5 +1,4 @@
 ﻿using HtmlConverter.Configurations;
-using System.IO;
 
 namespace HtmlConverter.Demo
 {
@@ -12,28 +11,16 @@ namespace HtmlConverter.Demo
 
             // Generate Pdf From HTML string
 
-            var result = Core.HtmlConverter.ConvertHtmlToPdf(html, new PdfConfiguration());
-
-            //  Store
-            File.WriteAllBytes("C:\\Users\\kemsty\\Pictures\\html.pdf", result);
+            Core.HtmlConverter.ConvertHtmlToPdf(new PdfConfiguration(html, "", "C:\\Users\\kemsty\\Pictures\\html.pdf"));
 
             // Generate Pdf From URL
-            result = Core.HtmlConverter.ConvertUrlToPdf(url, new PdfConfiguration());
-
-            //  Store
-            File.WriteAllBytes("C:\\Users\\kemsty\\Pictures\\google.pdf", result);
+            Core.HtmlConverter.ConvertUrlToPdf(new PdfConfiguration("", url, "C:\\Users\\kemsty\\Pictures\\google.pdf"));
 
             // Generate Pdf From HTML string
-            result = Core.HtmlConverter.ConvertHtmlToImage(html, new ImageConfiguration());
-
-            //  Store
-            File.WriteAllBytes("C:\\Users\\kemsty\\Pictures\\html.png", result);
+            Core.HtmlConverter.ConvertHtmlToImage(new ImageConfiguration(html, "", "C:\\Users\\kemsty\\Pictures\\html.png"));
 
             // Generate Pdf From URL
-            result = Core.HtmlConverter.ConvertUrlToImage(url, new ImageConfiguration());
-
-            //  Store
-            File.WriteAllBytes("C:\\Users\\kemsty\\Pictures\\google.png", result);
+            Core.HtmlConverter.ConvertUrlToImage(new ImageConfiguration("", url, "C:\\Users\\kemsty\\Pictures\\html.png"));
         }
     }
 }

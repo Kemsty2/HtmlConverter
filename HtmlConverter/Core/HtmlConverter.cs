@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Runtime.InteropServices;
 using HtmlConverter.Configurations;
 
@@ -21,57 +22,68 @@ namespace HtmlConverter.Core
         /// <summary>
         /// Converts given HTML string to PDF.
         /// </summary>
-        /// <param name="html">String containing HTML code that should be converted to PDF.</param>
         /// <param name="configuration"></param>
         /// <returns>PDF as byte array.</returns>
-        public static byte[] ConvertHtmlToPdf(string html, PdfConfiguration configuration)
+        public static byte[] ConvertHtmlToPdf(PdfConfiguration configuration)
         {
-            if (configuration != null)
-                return ConvertByHtml(configuration.WkhtmlPath, configuration.GetConvertOptions(), html, WkhtmlPdfExe);
-            throw new ArgumentNullException(nameof(configuration));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
+            var bytes = ConvertByHtml(configuration.WkhtmlPath, configuration.GetConvertOptions(), configuration.Content, WkhtmlPdfExe);
+
+            Store(configuration.OutputPath, bytes);
+            return bytes;
+            
         }
 
         /// <summary>
         /// Converts given HTML string to Image.
         /// </summary>
-        /// <param name="html">String containing HTML code that should be converted to Image.</param>
         /// <param name="configuration"></param>
         /// <returns>PDF as byte array.</returns>
-        public static byte[] ConvertHtmlToImage(string html, ImageConfiguration configuration)
+        public static byte[] ConvertHtmlToImage(ImageConfiguration configuration)
         {
-            if (configuration != null)
-                return ConvertByHtml(configuration.WkhtmlPath, configuration.GetConvertOptions(), html, WkhtmlImageExe);
-            throw new ArgumentNullException(nameof(configuration));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
+
+            var bytes = ConvertByHtml(configuration.WkhtmlPath, configuration.GetConvertOptions(), configuration.Content, WkhtmlImageExe);
+
+            Store(configuration.OutputPath, bytes);
+            return bytes;
+
         }
 
         /// <summary>
         /// Converts given Url string to PDF.
         /// </summary>
-        /// <param name="url">Url of website that should be converted to PDF.</param>
         /// <param name="configuration"></param>
         /// <returns>PDF as byte array.</returns>
-#pragma warning disable CA1054 // Les paramètres de type URI ne doivent pas être des chaînes
-        public static byte[] ConvertUrlToPdf(string url, PdfConfiguration configuration)
-#pragma warning restore CA1054 // Les paramètres de type URI ne doivent pas être des chaînes
+        public static byte[] ConvertUrlToPdf(PdfConfiguration configuration)
         {
-            if (configuration != null)
-                return ConvertByUrl(configuration.WkhtmlPath, configuration.GetConvertOptions(), url, WkhtmlPdfExe);
-            throw new ArgumentNullException(nameof(configuration));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
+            
+            var bytes = ConvertByUrl(configuration.WkhtmlPath, configuration.GetConvertOptions(), configuration.Url, WkhtmlPdfExe);
+
+            Store(configuration.OutputPath, bytes);
+            return bytes;
         }
 
         /// <summary>
         /// Converts given Url string to Image.
         /// </summary>
-        /// <param name="url">Url of website that should be converted to Image.</param>
         /// <param name="configuration"></param>
         /// <returns>PDF as byte array.</returns>
-#pragma warning disable CA1054 // Les paramètres de type URI ne doivent pas être des chaînes
-        public static byte[] ConvertUrlToImage(string url, ImageConfiguration configuration)
-#pragma warning restore CA1054 // Les paramètres de type URI ne doivent pas être des chaînes
+        public static byte[] ConvertUrlToImage(ImageConfiguration configuration)
         {
-            if (configuration != null)
-                return ConvertByUrl(configuration.WkhtmlPath, configuration.GetConvertOptions(), url, WkhtmlImageExe);
-            throw new ArgumentNullException(nameof(configuration));
+            if (configuration == null) throw new ArgumentNullException(nameof(configuration));
+
+            var bytes = ConvertByUrl(configuration.WkhtmlPath, configuration.GetConvertOptions(), configuration.Url, WkhtmlImageExe);
+
+            Store(configuration.OutputPath, bytes);
+            return bytes;
+        }
+
+        private static void Store(string outputPath, byte[] bytes)
+        {
+            if (!string.IsNullOrEmpty(outputPath))
+                File.WriteAllBytes(outputPath, bytes);
         }
     }
 }
