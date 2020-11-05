@@ -280,7 +280,7 @@ Conversion setting assume you have the WkHTMLToPDF/WkHTMLToImage (x64) tool inst
 
 ## Contributions
 
-- King Kemsty (@kemsty2)
+- King Kemsty  [@kemsty2](https://twitter.com/kemsty2/)
 
 ## Credits
 
