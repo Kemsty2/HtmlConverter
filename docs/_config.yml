@@ -1,6 +1,6 @@
 # Basic options
 
-title: HmltConverter, Convert your HTML File to Image or PDF
+title: HmltConverter
 author: kemsty2
 email: kemsty2@yahoo.fr
 description: HtmlConverter is a wrapper of wkthmltopdf library write in C# and build as a Asp.Net Core libray. It helps you convert Html to PDF or Image. Have fun !!!
