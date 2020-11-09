@@ -21,7 +21,7 @@ compress_html:
   blanklines: false
   profile: false
 
-theme: just-the-docs
+remote_theme: just-the-docs
 plugins:
   - jekyll-feed
 
