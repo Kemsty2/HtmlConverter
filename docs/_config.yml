@@ -1,6 +1,6 @@
 # Basic options
 
-title: HmltConverter, Convert your HTML File to Image or PDF
+title: HmltConverter
 author: kemsty2
 email: kemsty2@yahoo.fr
 description: HtmlConverter is a wrapper of wkthmltopdf library write in C# and build as a Asp.Net Core libray. It helps you convert Html to PDF or Image. Have fun !!!
@@ -9,4 +9,27 @@ github_username: kemsty2
 
 # Build settings
 markdown: kramdown
-theme: minima
+theme: just-the-docs
+plugins:
+  - jekyll-feed
+
+# Exclude from processing.
+# The following items will not be processed, by default.
+# Any item listed under the `exclude:` key here will be automatically added to
+# the internal "default list".
+#
+# Excluded items can be processed by explicitly listing the directories or
+# their entries' file path in the `include:` list.
+#
+# exclude:
+#   - .sass-cache/
+#   - .jekyll-cache/
+#   - gemfiles/
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules/
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
+
