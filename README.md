@@ -43,7 +43,7 @@ Conversion setting assume you have the WkHTMLToPDF/WkHTMLToImage (x64) tool inst
 ## Sample 2: Get Content from a URL
 
 ```c#
-    HtmlConverter.ConvertUrlToPdf(new PdfConversionSettings
+    HtmlConverter.ConvertUrlToPdf(new PdfConfiguration
     {
         Url = "http://www.lipsum.com/",
         OutputPath = @"C:\temp\temp-url.pdf"
@@ -53,7 +53,7 @@ Conversion setting assume you have the WkHTMLToPDF/WkHTMLToImage (x64) tool inst
 ## Sample 3: Quality and Page Size
 
 ```c#
-    HtmlConverter.ConvertUrlToPdf(new PdfConversionSettings
+    HtmlConverter.ConvertUrlToPdf(new PdfConfiguration
     {
         IsLowQuality = false,
         PageMargins = new Margins() { Bottom = 10, Left = 10, Right = 10, Top = 10 },
@@ -82,7 +82,7 @@ Conversion setting assume you have the WkHTMLToPDF/WkHTMLToImage (x64) tool inst
 ## Sample 2: Get Content from a URL (Image)
 
 ```c#
-    HtmlConverter.ConvertUrlToImage(new PdfConversionSettings
+    HtmlConverter.ConvertUrlToImage(new ImageConfiguration
     {
         Url = "http://www.lipsum.com/",
         OutputPath = @"C:\temp\temp-url.png",
@@ -94,7 +94,7 @@ Conversion setting assume you have the WkHTMLToPDF/WkHTMLToImage (x64) tool inst
 ## Sample 3: Crop, Zoom and Page Size
 
 ```c#
-    HtmlConverter.ConvertHtmlToImage(new PdfConversionSettings
+    HtmlConverter.ConvertHtmlToImage(new ImageConfiguration
     {
         Crop = new Cropping() { Height = 10, Width = 10, CropX = 10, CropY = 10 },
         Content = @"<h1>Lorem ipsum dolor sit amet consectetuer adipiscing elit I SHOULD BE RED BY JAVASCRIPT</h1><script>document.querySelector('h1').style.color = 'rgb(128,0,0)';</script>",
