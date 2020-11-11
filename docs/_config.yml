@@ -21,8 +21,8 @@ compress_html:
   blanklines: false
   profile: false
   
-remote_theme: pmarsceill/just-the-docs
-# theme: "just-the-docs"
+#remote_theme: pmarsceill/just-the-docs
+theme: "just-the-docs"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
