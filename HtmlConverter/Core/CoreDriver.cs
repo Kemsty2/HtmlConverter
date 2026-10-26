@@ -181,23 +181,20 @@ namespace HtmlConverter.Core
             }
 
             if (!RuntimeInformation.IsOSPlatform(OSPlatform.Linux)) return false;
-            var process = Process.Start(new ProcessStartInfo
+
+            if (!string.IsNullOrEmpty(wkhtmlpath))
             {
-                CreateNoWindow = true,
-                UseShellExecute = false,
-                WorkingDirectory = "/bin/",
-                RedirectStandardError = true,
-                RedirectStandardOutput = true,
-                FileName = "/bin/bash",
-                Arguments = $"which {wkhtmlExe}"
-            });
+                return File.Exists(Path.Combine(wkhtmlpath, wkhtmlExe));
+            }
 
-            if (process == null) return false;
+            // Search PATH directly; chiseled container images have no shell to run `which`
+            var paths = Environment.GetEnvironmentVariable("PATH") ?? string.Empty;
+            foreach (var dir in paths.Split(Path.PathSeparator, StringSplitOptions.RemoveEmptyEntries))
+            {
+                if (File.Exists(Path.Combine(dir, wkhtmlExe))) return true;
+            }
 
-            var output = process.StandardOutput.ReadToEnd();
-            process.WaitForExit();
-            return !string.IsNullOrEmpty(output) && output.Contains(wkhtmlExe);
-
+            return false;
         }
     }
 

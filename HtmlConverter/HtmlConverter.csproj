@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <Authors>kingkemsty</Authors>
     <Description>HtmlConverter is a small wrapper of the popular library wkhtmltopdf which is able to convert html to pdf and image.</Description>
     <Copyright>2020</Copyright>
